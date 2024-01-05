@@ -1,16 +1,37 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        ArrayList<Movie> list = new ArrayList<Movie>();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        list.add(new Movie("Force Awakens", 8.3, 2015));
+        list.add(new Movie("Star Wars", 8.7, 1977));
+        list.add(new Movie("Empire Strikes Back", 8.8, 1980));
+        list.add(new Movie("Return of the Jedi", 8.4, 1983));
+
+        // Sort by rating
+        System.out.println("Sorted by rating:");
+        RatingCompare ratingCompare = new RatingCompare();
+        Collections.sort(list, ratingCompare);
+        for (Movie movie : list) {
+            System.out.println(movie.getRating() + " " + movie.getName() + " " + movie.getYear());
+        }
+
+        // Sort by name
+        System.out.println("\nSorted by name:");
+        NameCompare nameCompare = new NameCompare();
+        Collections.sort(list, nameCompare);
+        for (Movie movie : list) {
+            System.out.println(movie.getName() + " " + movie.getRating() + " " + movie.getYear());
+        }
+
+        // Sort by year (using Comparable)
+        System.out.println("\nSorted by year:");
+        Collections.sort(list);
+        for (Movie movie : list) {
+            System.out.println(movie.getYear() + " " + movie.getRating() + " " + movie.getName());
         }
     }
 }
